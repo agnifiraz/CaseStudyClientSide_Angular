@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@import "./custom-theme.scss";
+.my-primary-text {
+  color: mat.get-color-from-palette($my-primary);
+}
+.my-accent-text {
+  color: mat.get-color-from-palette($my-accent);
+}
+.margin-right-2 {
+  margin-right: 2vw !important;
+}
+.margin-top-5 {
+  margin-top: 5vh !important;
+}
+mat-list-item:nth-child(odd) {
+  background-color: white;
+}
+mat-list-item:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+.padtop15 {
+  padding-top: 15vh;
+}
+.material-icons.addicon {
+  font-size: 15vw;
+  position: absolute;
+  bottom: 5vh;
+  right: 5vw;
+  padding: 10vw;
+}
+
+mat-form-field {
+  margin-left: 5%;
+  width: 90%;
+}
+
+.mat-mdc-row:nth-child(odd) {
+  background-color: #eeeeee;
+  text-align: center;
+}
+.mat-mdc-row.ng-star-inserted:nth-child(even) {
+  background-color: white;
+  text-align: center;
+}

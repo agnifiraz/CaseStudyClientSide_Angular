@@ -1,0 +1,54 @@
+<mat-card *ngIf="hideEditForm">
+  <mat-card-content *ngIf="vendors.length > 0; else loading">
+    <div style="display: flex; justify-content: center">
+      <img src="../../assets/images/logo.png" width="150px" />
+    </div>
+    <mat-card-header class="app-accent" layout="row">
+      <mat-card-title>
+        <!-- {{ msg }} -->
+      </mat-card-title>
+    </mat-card-header>
+    <mat-list flex>
+      <app-vendor-list [vendors]="vendors" (selected)="select($event)">
+      </app-vendor-list>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-footer align="end" class="my-accent-text margin-right-2">
+    {{ msg }}
+  </mat-card-footer>
+
+  <ng-template #loading class="my-primary-text"
+    >Loading Vendors from server...</ng-template
+  >
+</mat-card>
+
+<div class="pad5" *ngIf="hideEditForm">
+  <mat-icon
+    (click)="newVendor()"
+    matTooltip="Add New Vendor"
+    class="addicon"
+    color="primary"
+  >
+    control_point
+  </mat-icon>
+</div>
+<mat-card *ngIf="!hideEditForm">
+  <mat-card-header>
+    <mat-card-title>
+      <!-- <span class="my-primary-text">{{ msg }}</span> -->
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-vendor-detail
+      [selectedVendor]="vendor"
+      (cancelled)="cancel('cancelled')"
+      (saved)="save($event)"
+      (deleted)="delete($event)"
+    >
+    </app-vendor-detail>
+  </mat-card-content>
+  <mat-card-footer align="end" class="my-accent-text margin-right-2">
+    {{ msg }}
+  </mat-card-footer>
+</mat-card>

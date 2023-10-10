@@ -1,0 +1,164 @@
+<div style="display: flex; justify-content: center; margin: 10%">
+  <img src="../../assets/images/logo.png" width="150px" />
+</div>
+<form [formGroup]="vendorForm">
+  <div layout="row">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <mat-error
+        *ngIf="name.errors && (name.dirty || name.touched)"
+        align="end"
+      >
+        Vendor Name is required
+      </mat-error>
+      <input matInput type="text" required formControlName="name" autofocus />
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-label>Address 1</mat-label>
+      <mat-error
+        *ngIf="address1.errors && (address1.dirty || address1.touched)"
+        align="end"
+      >
+        Address is required
+      </mat-error>
+      <input matInput type="text" required formControlName="address1" />
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <mat-error
+        *ngIf="city.errors && (city.dirty || city.touched)"
+        align="end"
+      >
+        City is required
+      </mat-error>
+      <input matInput type="text" required formControlName="city" />
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-error
+        *ngIf="province.errors && (province.dirty || province.touched)"
+        align="end"
+      >
+        Province is required
+      </mat-error>
+      <mat-select
+        matInput
+        placeholder="Province"
+        formControlName="province"
+        flex
+      >
+        <mat-option value="On">Ontario</mat-option>
+        <mat-option value="Qu">Quebec</mat-option>
+        <mat-option value="Ab">Alberta</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-label>Postal Code</mat-label>
+      <mat-error
+        *ngIf="postalcode.errors && (postalcode.dirty || postalcode.touched)"
+        align="end"
+      >
+        <span *ngIf="postalcode.hasError('required')"
+          >Postal Code is required.</span
+        >
+        <span
+          *ngIf="
+            !postalcode.hasError('required') &&
+            postalcode.hasError('invalidPostalCode')
+          "
+        >
+          format must be - X#X-#X#</span
+        >
+      </mat-error>
+      <input matInput type="text" required formControlName="postalcode" />
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-label>Phone #</mat-label>
+      <mat-error
+        *ngIf="phone.errors && (phone.dirty || phone.touched)"
+        align="end"
+      >
+        <span *ngIf="phone.hasError('required')">Phone# is required.</span>
+        <span
+          *ngIf="!phone.hasError('required') && phone.hasError('invalidPhone')"
+          >needs format - (###)###-####</span
+        >
+      </mat-error>
+      <input matInput type="text" required formControlName="phone" />
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-error
+        *ngIf="type.errors && (type.dirty || type.touched)"
+        align="end"
+      >
+        Vendor Type is required
+      </mat-error>
+      <mat-select matInput placeholder="Type" formControlName="type" flex>
+        <mat-option value="unknown">Unknown</mat-option>
+        <mat-option value="trusted">Trusted</mat-option>
+        <mat-option value="untrusted">Untrusted</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <mat-error
+        *ngIf="email.errors && (email.dirty || email.touched)"
+        align="end"
+      >
+        <span *ngIf="email.hasError('required')"
+          >Email Address is required.</span
+        >
+        <span
+          *ngIf="!email.hasError('required') && email.hasError('invalidEmail')"
+          >needs format - xxx@xxx.xxx</span
+        >
+      </mat-error>
+      <input matInput type="email" required formControlName="email" />
+    </mat-form-field>
+  </div>
+  <div class="mat-pad-sm">
+    <span>
+      <button
+        mat-raised-button
+        type="button"
+        (click)="updateSelectedVendor()"
+        [disabled]="!vendorForm.valid"
+      >
+        Save
+      </button>
+    </span>
+    <span>
+      <button
+        *ngIf="selectedVendor.id"
+        mat-raised-button
+        type="button"
+        (click)="deleted.emit(selectedVendor)"
+      >
+        Delete
+      </button>
+    </span>
+
+    <span>
+      <button
+        mat-raised-button
+        type="button"
+        (click)="cancelled.emit(selectedVendor)"
+      >
+        Cancel
+      </button>
+    </span>
+  </div>
+</form>
