@@ -55,18 +55,6 @@
         </mat-form-field>
       </div>
 
-      <!-- <div *ngIf="hasProducts" class="row">
-        <mat-form-field flex>
-          <mat-label>Select A QTY</mat-label>
-          <mat-select placeholder="Select A QTY" formControlName="qty">
-            <mat-option [value]="productid.value.eoq">EOQ</mat-option>
-            <mat-option *ngFor="let i of eoqOptions" [value]="i">{{
-              i
-            }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div> -->
-
       <br />
       <div *ngIf="hasProducts && items.length > 0" class="row">
         <div>

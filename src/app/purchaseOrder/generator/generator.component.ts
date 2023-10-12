@@ -38,7 +38,7 @@ export class GeneratorComponent implements OnInit, OnDestroy {
   selectedproducts: Product[] = []; // products that being displayed currently in app
   selectedProduct: Product; // the current selected product
   selectedVendor: Vendor; // the current selected vendor
-  lineItems:  PurchaseOrderItem[] = []
+  lineItems: PurchaseOrderItem[] = [];
   // misc
   pickedProduct: boolean;
   pickedVendor: boolean;
@@ -96,7 +96,6 @@ export class GeneratorComponent implements OnInit, OnDestroy {
       qrcode: '',
       qrcodetxt: '',
     };
-    
 
     this.selectedVendor = {
       id: 0,
@@ -200,39 +199,8 @@ export class GeneratorComponent implements OnInit, OnDestroy {
 
         this.msg = 'choose quantity for product';
 
-        // const item: PurchaseOrderItem = {
-        //   id: 0,
-        //   purchaseOrderid: 0,
-        //   productid: this.selectedProduct?.id,
-        //   qty: 0,
-        //   price: this.selectedProduct?.costprice,
-        // };
-        // if (
-        //   this.items.find((item) => item.productid === this.selectedProduct?.id)
-        // ) {
-        //   // ignore entry
-        // } else {
-        //   // add entry
-        //   this.items.push(item);
-         // this.selectedproducts.push(this.selectedProduct);
-          //this.initialQty = this.selectedProduct.eoq;
-          //this.initialCostprice = this.selectedProduct.costprice;
-          //console.log(this.initialQty);
-       // }
-      
-      //   if (this.items.length > 0) {
-           this.hasProducts = true;
-      //   }
-      //   this.subtotal = 0.0;
-      //   this.tax = 0.0;
-      //   this.total = 0.0;
-
-      //   this.selectedproducts.forEach(
-      //     (exp) => (this.subtotal += exp.costprice)
-      //   );
-      //   this.tax = this.subtotal * 0.13;
-      //   this.total = this.subtotal + this.tax;
-       });
+        this.hasProducts = true;
+      });
 
     this.formSubscription?.add(productSubscription); // add it as a child, so all can be destroyed together
   } // onPickProduct
@@ -241,11 +209,6 @@ export class GeneratorComponent implements OnInit, OnDestroy {
     const qtySubscription = this.generatorForm
       .get('qty')
       ?.valueChanges.subscribe((newQty) => {
-        // see if the product exists on the selected products
-        // const itemindex = this.selectedproducts.findIndex(
-        //   (item) => item.id === this.selectedProduct.id
-        // );
-
         const item: PurchaseOrderItem = {
           id: 0, // Assign the appropriate ID
           purchaseOrderid: 0, // Assign the appropriate purchaseOrder ID
@@ -259,36 +222,18 @@ export class GeneratorComponent implements OnInit, OnDestroy {
         );
 
         if (newQty === 0 && itemindex !== -1) {
-            this.items.splice(itemindex, 1);
-            this.msg = `${this.selectedProduct.name} removed`;
-        }
-         else if (itemindex !== -1) {
+          this.items.splice(itemindex, 1);
+          this.msg = `${this.selectedProduct.name} removed`;
+        } else if (itemindex !== -1) {
           // if the item exists and qty NOT 0
           console.log(itemindex);
-         // this.selectedProduct.eoq = newQty;
-        // this.lineItems[itemindex].qty = newQty;
-          // if (itemindex === -1) {
-          //   this.selectedproducts.push(this.selectedProduct);
-          //   this.msg = `${newQty} ${
-          //     this.selectedproducts[itemindex + 1].name
-          //   }(s) added`;
-          //   this.items[itemindex].qty = newQty;
-          //}
+
           this.msg = `${newQty} ${this.selectedProduct.name}(s) added`;
-            this.items[itemindex].qty = newQty;
-          // if (itemindex !== -1) { 
-          // }
+          this.items[itemindex].qty = newQty;
         } else {
-          // if it's a new product entirely
-          // this.selectedProduct.eoq = 0;
-          // this.selectedProduct.costprice = 0;
-          // this.modifyQty = newQty;
-          //this.selectedproducts.push(this.selectedProduct);
           this.msg = `${newQty} ${this.selectedProduct.name}(s) added`;
           this.items.push(item);
         }
-
-       // this.selectedProduct.costprice = this.initialCostprice * newQty;
         console.log(this.selectedProduct.costprice + '  ' + newQty);
 
         this.subtotal = 0.0;
@@ -296,8 +241,9 @@ export class GeneratorComponent implements OnInit, OnDestroy {
         this.total = 0.0;
 
         this.items.forEach((item) => {
-
-          const index = this.vendorproducts.findIndex(product => product.id === item.productid);
+          const index = this.vendorproducts.findIndex(
+            (product) => product.id === item.productid
+          );
           this.subtotal += this.vendorproducts[index].costprice * item.qty;
         });
         this.tax = this.subtotal * 0.13;
