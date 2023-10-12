@@ -50,6 +50,13 @@ export class GenericHttpService<T> {
     return this.http.get<T[]>(`${BASEURL}/products`);
   }
 
+  getSome(id: number): Observable<T[]> {
+    const urlWithId = `${BASEURL}/${this.entity}/${id}`;
+    return this.http
+      .get<T[]>(urlWithId)
+      .pipe(take(1), catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
