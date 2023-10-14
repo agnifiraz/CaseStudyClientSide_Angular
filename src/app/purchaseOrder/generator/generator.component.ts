@@ -8,6 +8,8 @@ import { Vendor } from '@app/vendor/vendor';
 import { NewVendorService } from '@app/vendor/newvendor.service';
 import { Product } from '@app/product/product';
 import { ProductService } from '@app/product/product.service';
+import { PDFURL } from '@app/constants';
+
 import {
   FormBuilder,
   FormControl,
@@ -285,4 +287,8 @@ export class GeneratorComponent implements OnInit, OnDestroy {
       },
     });
   } // createPurchaseOrder
+
+  viewPdf(): void {
+    window.open(`${PDFURL}${this.purchaseOrderno}`, '');
+  } // viewPdf
 } // GeneratorComponent
