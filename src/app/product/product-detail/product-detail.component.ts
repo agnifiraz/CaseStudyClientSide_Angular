@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatComponentsModule } from '@app/mat-components/mat-components.module';
+import { DeleteDialogComponent } from '@app/delete-dialog/delete-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 import {
   FormControl,
   FormGroup,
@@ -56,6 +59,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
+    private dialog: MatDialog,
     private productService: ProductService
   ) {
     this.id = new FormControl(
@@ -138,6 +142,23 @@ export class ProductDetailComponent implements OnInit {
     //this.selectedProduct.qrcodetxt = this.productForm.value.qrcodetxt;
     this.saved.emit(this.selectedProduct);
   } // updateSelectedProduct
+
+  openDeleteDialog(selectedProduct: Product): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = {
+      title: `Delete Product ${this.selectedProduct.id}`,
+      entityname: 'product',
+    };
+    dialogConfig.panelClass = 'customdialog';
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleted.emit(this.selectedProduct);
+      }
+    });
+  } // openDeleteDialog
 
   uniqueCodeValidator(control: AbstractControl): { idExists: boolean } | null {
     /**

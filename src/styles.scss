@@ -43,3 +43,24 @@ mat-form-field {
   background-color: white;
   text-align: center;
 }
+
+.customdialog .mat-mdc-dialog-title.mat-mdc-dialog-title {
+  color: mat.get-color-from-palette($my-primary);
+}
+.customdialog .mat-mdc-dialog-content.mat-mdc-dialog-content {
+  color: mat.get-color-from-palette($my-primary);
+}
+#deleteNo,
+#deleteYes {
+  background-color: mat.get-color-from-palette($my-primary);
+  color: white;
+  font-size: x-large;
+  padding: 1vh;
+  margin: 1vw;
+}
+#deleteCancel {
+  background-color: white;
+  border: none;
+  padding-top: 2vh;
+  padding-left: 5vw;
+}

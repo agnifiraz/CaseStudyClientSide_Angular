@@ -140,12 +140,13 @@
         Save
       </button>
     </span>
+
     <span>
       <button
         *ngIf="selectedVendor.id"
         mat-raised-button
         type="button"
-        (click)="deleted.emit(selectedVendor)"
+        (click)="openDeleteDialog(selectedVendor)"
       >
         Delete
       </button>

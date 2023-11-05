@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldModule,
@@ -37,6 +38,7 @@ const MaterialComponents = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatExpansionModule,
+  MatDialogModule,
 ];
 
 @NgModule({

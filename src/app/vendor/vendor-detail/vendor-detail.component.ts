@@ -9,6 +9,8 @@ import { Vendor } from '../vendor';
 import { ValidatePhone } from '@app/validators/phone.validator';
 import { ValidateEmail } from '@app/validators/email.validator';
 import { ValidatePostalCode } from '@app/validators/postalcode.validator';
+import { DeleteDialogComponent } from '@app/delete-dialog/delete-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-vendor-detail',
@@ -39,7 +41,7 @@ export class VendorDetailComponent implements OnInit {
   phone: FormControl;
   type: FormControl;
   email: FormControl;
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder, private dialog: MatDialog) {
     this.name = new FormControl('', Validators.compose([Validators.required]));
     this.address1 = new FormControl(
       '',
@@ -98,4 +100,21 @@ export class VendorDetailComponent implements OnInit {
     this.selectedVendor.email = this.vendorForm.value.email;
     this.saved.emit(this.selectedVendor);
   }
+
+  openDeleteDialog(selectedVendor: Vendor): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = {
+      title: `Delete Vendor ${this.selectedVendor.id}`,
+      entityname: 'vendor',
+    };
+    dialogConfig.panelClass = 'customdialog';
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleted.emit(this.selectedVendor);
+      }
+    });
+  } // openDeleteDialog
 } // VendorDetailComponent

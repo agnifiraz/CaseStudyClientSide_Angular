@@ -232,15 +232,10 @@
       </button>
     </span>
     <span>
-      <button
-        *ngIf="selectedProduct.id"
-        mat-raised-button
-        type="button"
-        (click)="deleted.emit(selectedProduct)"
-      >
-        Delete
-      </button>
-    </span>
+      <button *ngIf="selectedProduct.id" mat-raised-button type="button" 
+     (click)="openDeleteDialog(selectedProduct)">Delete</button>
+      </span>
+     
     <span>
       <button
         mat-raised-button
