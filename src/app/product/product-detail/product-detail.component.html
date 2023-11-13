@@ -195,28 +195,36 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <!-- <div layout="row">
-    <mat-form-field flex>
-      <mat-label>QR Code</mat-label>
-      <input
-        matInput
-        placeholder="QR Code"
-        type="text"
-        formControlName="qrcode"
-      />
-    </mat-form-field>
-  </div>
-  <div layout="row">
-    <mat-form-field flex>
-      <mat-label>QR Code Text</mat-label>
-      <input
-        matInput
-        placeholder="QR Code Text"
-        type="text"
-        formControlName="qrcodetxt"
-      />
-    </mat-form-field> 
-    </div>-->
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="my-primary-text">
+        <mat-panel-title> QRCode Information </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div layout="row">
+        <mat-form-field flex>
+          <mat-label>QR Code Text</mat-label>
+          <input
+            matInput
+            placeholder="QR Code Text"
+            type="text"
+            formControlName="qrcodetxt"
+          />
+          <mat-error
+            *ngIf="qrcodetxt.invalid" align="end"
+          >
+              QR Code Text is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div layout="row" *ngIf="selectedProduct.qrcode">
+        QR Code <br/>
+        <img
+          style="display: block"
+          [src]="'data:image/png;base64,' + selectedProduct.qrcode"
+        />
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
   <br />
@@ -232,10 +240,16 @@
       </button>
     </span>
     <span>
-      <button *ngIf="selectedProduct.id" mat-raised-button type="button" 
-     (click)="openDeleteDialog(selectedProduct)">Delete</button>
-      </span>
-     
+      <button
+        *ngIf="selectedProduct.id"
+        mat-raised-button
+        type="button"
+        (click)="openDeleteDialog(selectedProduct)"
+      >
+        Delete
+      </button>
+    </span>
+
     <span>
       <button
         mat-raised-button

@@ -54,7 +54,7 @@ export class ProductDetailComponent implements OnInit {
   eoq: FormControl;
   qoh: FormControl;
   qoo: FormControl;
-  qrcode: FormControl;
+  //qrcode: FormControl;
   qrcodetxt: FormControl;
 
   constructor(
@@ -84,10 +84,8 @@ export class ProductDetailComponent implements OnInit {
     this.eoq = new FormControl('', Validators.compose([Validators.required]));
     this.qoh = new FormControl('', Validators.compose([Validators.required]));
     this.qoo = new FormControl('', Validators.compose([Validators.required]));
-    this.qrcode = new FormControl(
-      '',
-      Validators.compose([Validators.required])
-    );
+    //this.qrcode = new FormControl( '',Validators.compose([Validators.required]));
+
     this.qrcodetxt = new FormControl(
       '',
       Validators.compose([Validators.required])
@@ -103,8 +101,8 @@ export class ProductDetailComponent implements OnInit {
       eoq: this.eoq,
       qoh: this.qoh,
       qoo: this.qoo,
-      //qrcode: this.qrcode,
-      //qrcodetxt: this.qrcodetxt,
+      //qrcode: this.qrcode, //remove command for QR
+      qrcodetxt: this.qrcodetxt,
     });
   } // constructor
   ngOnInit(): void {
@@ -119,8 +117,8 @@ export class ProductDetailComponent implements OnInit {
       eoq: this.selectedProduct.eoq,
       qoh: this.selectedProduct.qoh,
       qoo: this.selectedProduct.qoo,
-      //qrcode: this.selectedProduct.qrcode,
-      //qrcodetxt: this.selectedProduct.qrcodetxt,
+      //qrcode: this.selectedProduct.qrcode, ////remove command for QR
+      qrcodetxt: this.selectedProduct.qrcodetxt,
     });
 
     // Fetch products and populate the array
@@ -138,8 +136,8 @@ export class ProductDetailComponent implements OnInit {
     this.selectedProduct.eoq = this.productForm.value.eoq;
     this.selectedProduct.qoh = this.productForm.value.qoh;
     this.selectedProduct.qoo = this.productForm.value.qoo;
-    //this.selectedProduct.qrcode = this.productForm.value.qrcode;
-    //this.selectedProduct.qrcodetxt = this.productForm.value.qrcodetxt;
+    this.selectedProduct.qrcode = this.productForm.value.qrcode; //remove command for QR
+    this.selectedProduct.qrcodetxt = this.productForm.value.qrcodetxt;
     this.saved.emit(this.selectedProduct);
   } // updateSelectedProduct
 
