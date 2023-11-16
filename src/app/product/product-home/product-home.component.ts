@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatComponentsModule } from '@app/mat-components/mat-components.module';
 import { Product } from '@app/product/product';
@@ -9,6 +9,7 @@ import { NewVendorService } from '@app/vendor/newvendor.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Sort } from '@angular/material/sort';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-product-home',
   standalone: true,
@@ -27,6 +28,15 @@ export class ProductHomeComponent implements OnInit {
   // sort stuff
   displayedColumns: string[] = ['id', 'name', 'vendorid'];
   dataSource: MatTableDataSource<Product> = new MatTableDataSource<Product>();
+
+  // MatPaginator
+  pageSize = 5;
+  @ViewChild(MatPaginator, { static: false }) set matPaginator(
+    paginator: MatPaginator
+  ) {
+    this.dataSource.paginator = paginator;
+  }
+
   vendors: Vendor[] = [];
   hideEditForm: boolean = true;
   constructor(

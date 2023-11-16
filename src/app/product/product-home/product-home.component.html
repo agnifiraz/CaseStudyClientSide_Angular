@@ -44,6 +44,12 @@
     ></tr>
   </table>
 
+  <mat-paginator
+    style="margin-top: 2vh"
+    [pageSize]="pageSize"
+    *ngIf="hideEditForm"
+    #paginator
+  ></mat-paginator>
   <br />
   <br />
   <mat-card-footer align="end" class="my-accent-text margin-right-2">
