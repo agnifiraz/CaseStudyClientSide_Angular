@@ -10,16 +10,16 @@ import { HomeComponent } from './home/home.component';
 import { VendorModule } from './vendor/vendor.module';
 
 @NgModule({
- declarations: [AppComponent, HomeComponent],
- imports: [
- BrowserModule,
- AppRoutingModule,
- BrowserAnimationsModule,
- HttpClientModule,
- MatComponentsModule,
- VendorModule,
- ],
- providers: [],
- bootstrap: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatComponentsModule,
+    VendorModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

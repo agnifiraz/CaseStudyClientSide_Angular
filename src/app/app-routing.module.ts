@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { VendorHomeComponent } from './vendor/vendor-home/vendor-home.component';
 import { ProductHomeComponent } from '@app/product/product-home/product-home.component';
 import { GeneratorComponent } from '@app/purchaseOrder/generator/generator.component';
+import { ViewerComponent } from '@app/purchaseOrder/viewer/viewer.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, title: 'CaseStudy - Home' },
@@ -18,6 +19,8 @@ const routes: Routes = [
     title: 'CaseStudy - Products',
   },
   { path: 'generator', component: GeneratorComponent },
+
+  { path: 'viewer', component: ViewerComponent },
 
   { path: '', component: HomeComponent, title: 'CaseStudy - Home' },
 ];

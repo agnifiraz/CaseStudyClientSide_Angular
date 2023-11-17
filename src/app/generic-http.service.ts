@@ -17,7 +17,7 @@ export class GenericHttpService<T> {
       .pipe(take(1), catchError(this.handleError));
   }
   getById(id: number): Observable<T> {
-    const urlWithId = `${BASEURL}/${this.entity}}/${id}`;
+    const urlWithId = `${BASEURL}/${this.entity}/${id}`;
     return this.http
       .get<T>(urlWithId)
       .pipe(take(1), catchError(this.handleError));

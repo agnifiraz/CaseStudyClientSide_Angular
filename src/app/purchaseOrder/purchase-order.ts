@@ -7,4 +7,6 @@ export interface PurchaseOrder {
   vendorid: number;
   amount: number;
   items: PurchaseOrderItem[];
+  podate?: string;
+
 }
