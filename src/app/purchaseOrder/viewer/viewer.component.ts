@@ -237,6 +237,7 @@ export class ViewerComponent implements OnInit, OnDestroy {
         this.hasPurchaseOrder = true;
 
         this.purchaseOrderno = this.selectedPurchaseOrder.id;
+        this.msg = 'Details for PO ' + this.selectedPurchaseOrder.id;
 
         console.log('Length is ' + this.items.length);
 

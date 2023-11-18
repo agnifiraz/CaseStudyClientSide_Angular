@@ -40,10 +40,10 @@
       <br />
       <div *ngIf="hasPurchaseOrder" class="row">
         <div>
-          <table>
+          <table style="width: 100%">
             <tr>
               <th
-                colspan="3"
+                colspan="4"
                 class="pad-xs text-center md-subhead my-primary-text"
                 style="font-weight: bold; padding: 2vh"
               >
@@ -56,20 +56,23 @@
               <td
                 style="
                   text-align: center;
-                  padding-left: 30px;
-                  padding-right: 40px;
+                  padding-left: 3px;
+                  padding-right: 3px;
                   padding-top: 2vh;
                   padding-bottom: 2vh;
+                  width: 30%;
                 "
               >
-                Product
+                Name
               </td>
               <td
                 style="
                   text-align: center;
-
+                  padding-left: 3px;
+                  padding-right: 3px;
                   padding-top: 2vh;
                   padding-bottom: 2vh;
+                  width: 15%;
                 "
               >
                 QTY
@@ -77,9 +80,11 @@
               <td
                 style="
                   text-align: center;
-
+                  padding-left: 3px;
+                  padding-right: 3px;
                   padding-top: 2vh;
                   padding-bottom: 2vh;
+                  width: 25%;
                 "
               >
                 Cost
@@ -87,8 +92,11 @@
               <td
                 style="
                   text-align: center;
+                  padding-left: 3px;
+                  padding-right: 3px;
                   padding-top: 2vh;
                   padding-bottom: 2vh;
+                  width: 30%;
                 "
               >
                 Extended
@@ -100,6 +108,8 @@
                 style="
                   padding-top: 1vh;
                   padding-bottom: 1vh;
+                  padding-left: 3px;
+                  padding-right: 3px;
                   text-align: center;
                 "
               >
@@ -109,18 +119,32 @@
                 style="
                   padding-top: 1vh;
                   padding-bottom: 1vh;
+                  padding-left: 3px;
+                  padding-right: 3px;
                   text-align: center;
                 "
               >
                 {{ getItemQuantity(item) }}
               </td>
               <td
-                style="padding-top: 1vh; padding-bottom: 1vh; text-align: right"
+                style="
+                  padding-top: 1vh;
+                  padding-bottom: 1vh;
+                  padding-left: 3px;
+                  padding-right: 3px;
+                  text-align: right;
+                "
               >
                 {{ item.costprice | currency : "USD" : "symbol" : "1.2-2" }}
               </td>
               <td
-                style="padding-top: 1vh; padding-bottom: 1vh; text-align: right"
+                style="
+                  padding-top: 1vh;
+                  padding-bottom: 1vh;
+                  padding-left: 3px;
+                  padding-right: 3px;
+                  text-align: right;
+                "
               >
                 {{
                   item.costprice * getItemQuantity(item)
